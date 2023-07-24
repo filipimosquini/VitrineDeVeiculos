@@ -6,6 +6,7 @@ import { UsuarioService } from '../services/usuario.service';
 
 import { FormBaseComponent } from 'src/app/base/form-base-component';
 import { CustomValidators } from '@narik/custom-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,7 +22,8 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   usuario : Usuario;
 
   constructor(private formBuilder: FormBuilder,
-              private service: UsuarioService) {
+              private service: UsuarioService,
+              private router: Router) {
 
     super();
 
@@ -71,6 +73,10 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   private processarRequisicaoComSucesso(response: any){
     this.cadastroForm.reset();
     this.errors = [];
+
+    this.service.localStorage.salvarDadosLocaisUsuario(response);
+
+    this.router.navigate(['/vitrine']);
   }
 
   private processarRequisicaoComFalha(fail: any){
