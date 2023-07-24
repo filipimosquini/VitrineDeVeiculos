@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Api", "Backend.Api\Backend.Api.csproj", "{46FD99D9-7937-463A-8CA9-5138A044932A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Api", "Backend.Api\Backend.Api.csproj", "{46FD99D9-7937-463A-8CA9-5138A044932A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA411CE5-B333-4D3B-9975-E4D58EC78A07} = {AA411CE5-B333-4D3B-9975-E4D58EC78A07}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Application", "Backend.Application\Backend.Application.csproj", "{1F7FED5E-5A32-49EE-920E-302440ABA8B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Application", "Backend.Application\Backend.Application.csproj", "{1F7FED5E-5A32-49EE-920E-302440ABA8B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Domain", "Backend.Domain\Backend.Domain.csproj", "{33BB659B-680E-414E-A675-B9B5B8DDE7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Domain", "Backend.Domain\Backend.Domain.csproj", "{33BB659B-680E-414E-A675-B9B5B8DDE7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Infra", "Backend.Infra\Backend.Infra.csproj", "{2D0AD51F-9F38-4167-A958-9CE9000DE721}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Infra", "Backend.Infra\Backend.Infra.csproj", "{2D0AD51F-9F38-4167-A958-9CE9000DE721}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Ioc", "Backend.Ioc\Backend.Ioc.csproj", "{AA411CE5-B333-4D3B-9975-E4D58EC78A07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Ioc", "Backend.Ioc\Backend.Ioc.csproj", "{AA411CE5-B333-4D3B-9975-E4D58EC78A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{46FD99D9-7937-463A-8CA9-5138A044932A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +42,8 @@ Global
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
