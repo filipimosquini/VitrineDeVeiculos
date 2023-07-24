@@ -11,10 +11,11 @@ public static class EFCoreConnectionConfiguration
     public static IServiceCollection AddDbContextInjector(this IServiceCollection services,
         IConfiguration configuration)
     {
-        var sqlConnection = configuration.GetConnectionString("SqlConnection");
+        var mySqlConnection = configuration.GetConnectionString("MySqlConnection");
         services.AddDbContext<VitrineVeiculoContext>(options =>
         {
-            options.UseSqlServer(sqlConnection);
+            options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection),
+                x => x.MigrationsAssembly(typeof(VitrineVeiculoContext).Assembly.FullName));
         });
 
         return services;

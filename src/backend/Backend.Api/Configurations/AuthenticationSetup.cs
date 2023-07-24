@@ -1,5 +1,9 @@
 ﻿using System.Text;
+using Backend.Api.Sections;
+using Backend.Infra.Configurations;
+using Backend.Infra.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Api.Configurations;
@@ -8,8 +12,19 @@ public static class AuthenticationSetup
 {
     public static IServiceCollection AddingAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        var secret = configuration.GetSection("Identity")?["Secret"];
-        var key = Encoding.ASCII.GetBytes(secret);
+        services.AddDbContextIdentityInjector(configuration);
+
+        services.AddDefaultIdentity<IdentityUser>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<IdentityContext>()
+            .AddErrorDescriber<TraduzirMensagensIdentityParaPortugues>()
+            .AddDefaultTokenProviders();
+
+        var appSettingsSection = configuration.GetSection("Identity");
+        services.Configure<Identity>(appSettingsSection);
+
+        var identitySettings = appSettingsSection.Get<Identity>();
+        var key = Encoding.ASCII.GetBytes(identitySettings.Secret);
 
         services.AddAuthentication(auth =>
         {
@@ -23,8 +38,10 @@ public static class AuthenticationSetup
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidAudience = identitySettings.ValidoEm,
+                ValidIssuer = identitySettings.Emissor
             };
         });
 
