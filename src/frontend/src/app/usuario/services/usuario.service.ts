@@ -13,13 +13,17 @@ export class UsuarioService extends BaseService {
 
   cadastrar(usuario: Usuario) : Observable<Usuario> {
     return this.http
-      .post(this.urlServiceV1+'usuarios/cadastrar', usuario)
+      .post(this.urlServiceV1+'usuarios/cadastro', usuario)
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
   }
 
-  login(usuario: Usuario){
-
+  login(usuario: Usuario) : Observable<Usuario>{
+    return this.http
+      .post(this.urlServiceV1+'usuarios/login', usuario)
+      .pipe(
+        map(this.obterDadosDoResponse),
+        catchError(this.tratarErrosDoServidor))
   }
 }

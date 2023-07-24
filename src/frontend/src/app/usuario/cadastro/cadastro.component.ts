@@ -98,10 +98,14 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
       this.service.cadastrar(this.usuario)
         .subscribe({
-          next: (v) => this.processarRequisicaoComSucesso,
-          error: (e) => this.processarRequisicaoComFalha,
+          next: (v) => {
+            this.processarRequisicaoComSucesso(v)
+          },
+          error: (e) => {
+            this.processarRequisicaoComFalha(e)
+          },
           complete: () => console.info('complete')
-      });
+        });
 
       this.atualizarFlagMudancasNaoSalvasParaFalso();
     }
