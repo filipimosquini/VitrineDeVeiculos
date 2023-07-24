@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsuarioAppComponent } from './usuario.app.component';
 import { CadastroComponent } from './cadastro/cadastro.component';

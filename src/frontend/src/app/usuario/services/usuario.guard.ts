@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { CanDeactivate, CanActivate, Router } from "@angular/router";
+
 import { CadastroComponent } from "../cadastro/cadastro.component";
 import { LocalStorageUtils } from "src/app/utils/localstorage";
+import { Router } from "@angular/router";
 
 @Injectable()
-export class UsuarioGuard implements CanDeactivate<CadastroComponent>, CanActivate {
+export class UsuarioGuard {
 
   localStorageUtils = new LocalStorageUtils();
 
