@@ -7,6 +7,7 @@ import { UsuarioService } from '../services/usuario.service';
 import { FormBaseComponent } from 'src/app/base/form-base-component';
 import { CustomValidators } from '@narik/custom-validators';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,7 +24,8 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   constructor(private formBuilder: FormBuilder,
               private service: UsuarioService,
-              private router: Router) {
+              private router: Router,
+              private toastr: ToastrService) {
 
     super();
 
@@ -36,7 +38,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
     let confirmarSenha = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senha)]);
 
     this.cadastroForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, CustomValidators.email]],
       senha: senha,
       confirmarSenha: confirmarSenha
     });
@@ -52,11 +54,11 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
         required: 'Informe o e-mail',
         email: 'Email inválido'
       },
-      password: {
+      senha: {
         required: 'Informe a senha',
         rangeLength: 'A senha deve possuir entre 6 e 15 caracteres'
       },
-      confirmPassword: {
+      confirmarSenha: {
         required: 'Informe a senha novamente',
         rangeLength: 'A senha deve possuir entre 6 e 15 caracteres',
         equalTo: 'As senhas não conferem'
@@ -76,11 +78,18 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
     this.service.localStorage.salvarDadosLocaisUsuario(response);
 
-    this.router.navigate(['/vitrine']);
+    let toast = this.toastr.success("Cadastro realizado com sucesso", "Bem vindo!")
+
+    if(toast){
+      toast.onHidden.subscribe(() => {
+        this.router.navigate(['/vitrine']);
+      });
+    }
   }
 
   private processarRequisicaoComFalha(fail: any){
     this.errors = fail.error.errors;
+    this.toastr.error("Ocorreu um erro", "Erro ao realizar esta operação.")
   }
 
   cadastrar(){

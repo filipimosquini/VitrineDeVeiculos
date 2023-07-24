@@ -18,8 +18,8 @@
           <div class="col-md-10">
               <input class="form-control" id="email" type="text" placeholder="E-mail (requerido)" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email }" />
               <span class="text-danger" *ngIf="displayMessage.email">
-                              <p [innerHTML]="displayMessage.email"></p>
-                          </span>
+                <p [innerHTML]="displayMessage.email"></p>
+              </span>
           </div>
       </div>
 
@@ -28,8 +28,8 @@
           <div class="col-md-10">
               <input class="form-control" id="senha" type="password" placeholder="Senha (requerido)" formControlName="senha" [ngClass]="{'is-invalid': displayMessage.senha }" />
               <span class="text-danger" *ngIf="displayMessage.senha">
-                              <p [innerHTML]="displayMessage.senha"></p>
-                          </span>
+                <p [innerHTML]="displayMessage.senha"></p>
+              </span>
           </div>
       </div>
 
@@ -38,8 +38,8 @@
           <div class="col-md-10">
               <input class="form-control" id="confirmarSenha" type="password" placeholder="Confirme a Senha (requerido)" formControlName="confirmarSenha" [ngClass]="{'is-invalid': displayMessage.confirmarSenha }" />
               <span class="text-danger" *ngIf="displayMessage.confirmarSenha">
-                              <p [innerHTML]="displayMessage.confirmarSenha"></p>
-                          </span>
+                <p [innerHTML]="displayMessage.confirmarSenha"></p>
+              </span>
           </div>
       </div>
 

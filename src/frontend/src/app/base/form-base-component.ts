@@ -17,9 +17,7 @@ export abstract class FormBaseComponent {
         this.genericValidator = new GenericValidator(validationMessages);
     }
 
-    protected configurarValidacaoFormularioBase(
-        formInputElements: ElementRef[],
-        formGroup: FormGroup) {
+    protected configurarValidacaoFormularioBase(formInputElements: ElementRef[], formGroup: FormGroup) {
 
         let controlBlurs: Observable<any>[] = formInputElements
             .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
