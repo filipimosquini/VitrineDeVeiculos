@@ -31,4 +31,8 @@ export abstract class FormBaseComponent {
         this.displayMessage = this.genericValidator.processarMensagens(formGroup);
         this.mudancasNaoSalvas = true;
     }
+
+    protected atualizarFlagMudancasNaoSalvasParaFalso() : void {
+      this.mudancasNaoSalvas = false;
+    }
 }

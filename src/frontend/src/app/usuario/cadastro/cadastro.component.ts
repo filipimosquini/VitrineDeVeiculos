@@ -102,6 +102,8 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
           error: (e) => this.processarRequisicaoComFalha,
           complete: () => console.info('complete')
       });
+
+      this.atualizarFlagMudancasNaoSalvasParaFalso();
     }
   }
 }
