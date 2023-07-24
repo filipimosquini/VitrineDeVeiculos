@@ -5,12 +5,14 @@ import { FooterComponent } from "./footer/footer.component";
 import { MenuComponent } from "./menu/menu.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { UsuarioLogadoComponent } from './usuario-logado/usuario-logado.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UsuarioLogadoComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
   exports: [
     MenuComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UsuarioLogadoComponent
   ]
 })
 export class NavegacaoModule { }
