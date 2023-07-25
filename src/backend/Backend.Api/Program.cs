@@ -20,6 +20,8 @@ builder.Host.UsingSerilog();
 // Add services to the container.
 
 builder.Services
+    .AddRequestValidatorsInjector()
+    .AddModelValidatorsInjector()
     .AddDbContextInjector(builder.Configuration)
     .AddRepositoriesInjector()
     .AddServicesInjector()
