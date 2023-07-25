@@ -16,5 +16,7 @@ public class ModeloRepository : BaseRepository<Modelo>, IModeloRepository
     }
 
     public async Task<IList<Modelo>> Listar(Guid marcaId)
-        => await _context.Modelos.ToListAsync();
+        => await _context.Modelos
+            .Where(x => x.MarcaId == marcaId)
+            .ToListAsync();
 }
