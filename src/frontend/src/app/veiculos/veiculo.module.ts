@@ -17,7 +17,7 @@ import { ListarComponent } from './listar/listar.component';
   declarations: [
     VeiculoAppComponent,
     CadastroComponent,
-    ListarComponent
+    ListarComponent,
   ],
   imports: [
     CommonModule,
@@ -28,12 +28,18 @@ import { ListarComponent } from './listar/listar.component';
     NarikCustomValidatorsModule,
     VeiculoRoutingModule,
   ],
-  exports: [
-    ListarComponent
-  ],
   providers: [
     VeiculoGuard,
     VeiculoService
   ]
 })
-export class VeiculoModule { }
+export class VeiculoModule {
+  static paraVitrine(){
+    return {
+      ngModule: VeiculoModule,
+      providers: [
+        VeiculoService,
+      ]
+    }
+  }
+ }

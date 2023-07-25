@@ -8,14 +8,22 @@ export abstract class BaseService {
   public localStorage = new LocalStorageUtils();
   protected urlApi: string = environment.urlApi;
 
-  protected obterHeaderJson() {
+  protected ObterHeaderJson() {
     return {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
         })
     };
-  }
+}
 
+protected ObterAuthHeaderJson() {
+    return {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.localStorage.obterTokenUsuario()}`
+        })
+    };
+}
   protected obterDadosDoResponse(response: any) {
     return response.data || {};
   }

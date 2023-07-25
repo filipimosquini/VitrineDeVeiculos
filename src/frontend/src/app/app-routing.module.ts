@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
-import { ListarComponent } from './veiculos/listar/listar.component';
+import { ListarComponent } from './vitrine/listar/listar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/vitrine', pathMatch: 'full' },

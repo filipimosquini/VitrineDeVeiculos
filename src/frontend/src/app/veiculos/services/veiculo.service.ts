@@ -12,6 +12,14 @@ export class VeiculoService extends BaseService {
     super();
   }
 
+  listar() : Observable<Veiculo[]>{
+    return this.http
+      .get(this.urlApi+'veiculos')
+      .pipe(
+        map(this.obterDadosDoResponse),
+        catchError(this.tratarErrosDoServidor))
+  }
+
   cadastrar(veiculo: Veiculo) : Observable<Veiculo> {
     return this.http
       .post(this.urlApi+'veiculos', veiculo)
