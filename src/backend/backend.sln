@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Infra", "Backend.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Ioc", "Backend.Ioc\Backend.Ioc.csproj", "{AA411CE5-B333-4D3B-9975-E4D58EC78A07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.CrossCutting", "Backend.CrossCutting\Backend.CrossCutting.csproj", "{ABBCF31E-EFF9-423D-9E89-7A69F4C0706C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA411CE5-B333-4D3B-9975-E4D58EC78A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABBCF31E-EFF9-423D-9E89-7A69F4C0706C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABBCF31E-EFF9-423D-9E89-7A69F4C0706C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABBCF31E-EFF9-423D-9E89-7A69F4C0706C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABBCF31E-EFF9-423D-9E89-7A69F4C0706C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

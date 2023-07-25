@@ -1,10 +1,11 @@
-﻿using System.Text;
-using Backend.Api.Sections;
+﻿using Backend.CrossCutting.Translates;
 using Backend.Infra.Configurations;
+using Backend.Infra.Configurations.AspNetIdentity.Sections;
 using Backend.Infra.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Backend.Api.Configurations;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Backend.Infra.Configurations;
+namespace Backend.CrossCutting.Translates;
 
 public class TraduzirMensagensIdentityParaPortugues : IdentityErrorDescriber
 {

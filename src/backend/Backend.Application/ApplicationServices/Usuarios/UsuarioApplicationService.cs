@@ -1,4 +1,5 @@
 ﻿using Backend.Application.Configurations.Bases;
+using Backend.Domain.Autenticacao.Services;
 using Backend.Domain.Bases.ApplicationServices;
 using Backend.Domain.Usuarios.ApplicationServices;
 using Backend.Domain.Usuarios.Requests;
@@ -10,11 +11,13 @@ public class UsuarioApplicationService : BaseApplicationService, IUsuarioApplica
 {
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly IAutenticacaoService _autenticacaoService;
 
-    public UsuarioApplicationService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+    public UsuarioApplicationService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IAutenticacaoService autenticacaoService)
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _autenticacaoService = autenticacaoService;
     }
 
     public async Task<ICustomValidationResult> Adicionar(AdicionarUsuarioRequest request)
@@ -35,6 +38,8 @@ public class UsuarioApplicationService : BaseApplicationService, IUsuarioApplica
         }
 
         await _signInManager.SignInAsync(usuario, false);
+
+        CustomValidationResult.Data = await _autenticacaoService.GerarTokenJwt(request.Email);
 
         return CustomValidationResult;
     }

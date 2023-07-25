@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Bases\" />
-    <Folder Include="Sections\" />
   </ItemGroup>
 
 </Project>

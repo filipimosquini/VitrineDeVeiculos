@@ -1,4 +1,4 @@
-﻿namespace Backend.Api.Sections;
+﻿namespace Backend.Infra.Configurations.AspNetIdentity.Sections;
 
 public class Identity
 {

@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Bases\" />
     <Folder Include="Contexts\" />
-    <Folder Include="Configurations\" />
   </ItemGroup>
 
   <ItemGroup>
