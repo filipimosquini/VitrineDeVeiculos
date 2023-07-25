@@ -13,7 +13,7 @@ export class UsuarioService extends BaseService {
 
   cadastrar(usuario: Usuario) : Observable<Usuario> {
     return this.http
-      .post(this.urlServiceV1+'usuarios/cadastro', usuario)
+      .post(this.urlApi+'usuarios', usuario)
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -21,7 +21,7 @@ export class UsuarioService extends BaseService {
 
   login(usuario: Usuario) : Observable<Usuario>{
     return this.http
-      .post(this.urlServiceV1+'usuarios/login', usuario)
+      .post(this.urlApi+'autenticacao', usuario)
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))

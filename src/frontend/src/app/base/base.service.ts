@@ -6,7 +6,7 @@ import { environment } from "src/enviroments/enviroment";
 export abstract class BaseService {
 
   public localStorage = new LocalStorageUtils();
-  protected urlServiceV1: string = environment.urlApi;
+  protected urlApi: string = environment.urlApi;
 
   protected obterHeaderJson() {
     return {
