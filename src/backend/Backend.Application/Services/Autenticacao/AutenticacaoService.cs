@@ -64,7 +64,7 @@ public class AutenticacaoService : IAutenticacaoService
         {
             AccessToken = encodedToken,
             ExpiresIn = TimeSpan.FromHours(_identity.ExpiracaoHoras).TotalSeconds,
-            UsuarioToken = new UsuarioToken
+            UserToken = new UsuarioToken
             {
                 Id = user.Id,
                 Email = user.Email,

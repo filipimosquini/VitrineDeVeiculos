@@ -9,6 +9,8 @@
   <ItemGroup>
     <Folder Include="Bases\" />
     <Folder Include="Contexts\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System.Data.Common;
+using Backend.Domain.Veiculos.Entities;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -17,10 +18,16 @@ public class VitrineVeiculoContext : DbContext, IUnitOfWork
         _configuration = configuration;
     }
 
+    public DbSet<Marca> Marcas { get; set; }
+    public DbSet<Modelo> Modelos { get; set; }
+    public DbSet<Veiculo> Veiculos { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlConnection"));
+            optionsBuilder.UseMySql(_configuration.GetConnectionString(GetType().Name),
+                ServerVersion.AutoDetect(_configuration.GetConnectionString(GetType().Name)));
 
         base.OnConfiguring(optionsBuilder);
     }
