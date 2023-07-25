@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Usuario } from "../models/usuario";
 import { Observable, catchError, map } from "rxjs";
+
 import { BaseService } from "src/app/base/base.service";
+import { Usuario } from "../models/usuario";
 
 @Injectable()
 export class UsuarioService extends BaseService {

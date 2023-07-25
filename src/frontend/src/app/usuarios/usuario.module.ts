@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NarikCustomValidatorsModule } from '@narik/custom-validators';
+
+import { UsuarioAppComponent } from './usuario.app.component';
+import { UsuarioRoutingModule } from './usuario.route';
+import { UsuarioGuard } from './services/usuario.guard';
+import { UsuarioService } from './services/usuario.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginComponent } from './login/login.component';
-import { UsuarioRoutingModule } from './usuario.route';
-import { UsuarioAppComponent } from './usuario.app.component';
-import { UsuarioGuard } from './services/usuario.guard';
-import { NarikCustomValidatorsModule } from '@narik/custom-validators';
-import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,11 @@ import { UsuarioService } from './services/usuario.service';
   imports: [
     CommonModule,
     RouterModule,
-    UsuarioRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NarikCustomValidatorsModule
+    NarikCustomValidatorsModule,
+    UsuarioRoutingModule,
   ],
   providers:[
     UsuarioService,

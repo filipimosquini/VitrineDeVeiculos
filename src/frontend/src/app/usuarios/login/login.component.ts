@@ -69,13 +69,7 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
     this.service.localStorage.salvarDadosLocaisUsuario(response);
 
-    let toast = this.toastr.success("Login realizado com Sucesso!, Bem vindo!")
-
-    if(toast){
-      toast.onHidden.subscribe(() => {
-        this.router.navigate(['/vitrine']);
-      });
-    }
+    this.router.navigate(['/vitrine']);
   }
 
   private processarRequisicaoComFalha(fail: any){
