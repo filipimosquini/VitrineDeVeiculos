@@ -6,7 +6,7 @@ import { VeiculoComponent } from './veiculos/veiculo.component';
 const routes: Routes = [
   { path: '', redirectTo: '/vitrine', pathMatch: 'full' },
   { path: 'vitrine', component: VeiculoComponent },
-  { path: 'usuarios', loadChildren: () => import('./usuario/usuario.module').then(x => x.UsuarioModule) },
+  { path: 'usuarios', loadChildren: () => import('./usuarios/usuario.module').then(x => x.UsuarioModule) },
 
   { path: 'nao-encontrado', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
