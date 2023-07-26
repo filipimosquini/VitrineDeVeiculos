@@ -8,7 +8,6 @@ import { Veiculo } from '../models/veiculo';
 import { Marca } from '../models/marca';
 import { Modelo } from '../models/modelo';
 import { VeiculoService } from '../services/veiculo.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editar',
@@ -142,7 +141,7 @@ export class EditarComponent  extends FormBaseComponent implements OnInit, After
           error: (e) => {
             this.processarRequisicaoComFalha(e)
           },
-          complete: () => console.info('complete')
+          complete: () => { }
         });
 
       this.atualizarFlagMudancasNaoSalvasParaFalso();

@@ -61,4 +61,12 @@ export class VeiculoService extends BaseService {
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
   }
+
+  excluir(veiculo: Veiculo) : Observable<Veiculo> {
+    return this.http
+      .delete(this.urlApi+'veiculos/'+veiculo.id, )
+      .pipe(
+        map(this.obterDadosDoResponse),
+        catchError(this.tratarErrosDoServidor))
+  }
 }

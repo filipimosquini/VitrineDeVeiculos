@@ -7,6 +7,7 @@ import { VeiculoAppComponent } from './veiculo.app.component';
 import { ListarComponent } from './listar/listar.component';
 import { EditarComponent } from './editar/editar.component';
 import { VeiculoResolve } from './services/veiculo.resolve';
+import { ExcluirComponent } from './excluir/excluir.component';
 
 const contaRouterConfig: Routes = [
     {
@@ -16,6 +17,7 @@ const contaRouterConfig: Routes = [
             { path: 'listar', component: ListarComponent, canActivate: [VeiculoGuard], },
             { path: 'cadastro', component: CadastroComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard] },
             { path: 'editar/:id', component: EditarComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard], resolve: { veiculo: VeiculoResolve } },
+            { path: 'excluir/:id', component: ExcluirComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard], resolve: { veiculo: VeiculoResolve } },
         ]
     }
 ];

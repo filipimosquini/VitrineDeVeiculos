@@ -1,0 +1,45 @@
+<div class="container main-container">
+  <h4>Excluir o veículo </h4>
+  <br>
+  <h5>Você tem certeza disso?</h5>
+
+  <div class="row">
+      <div class="col-md-4">
+          <!-- <img src="{{ imagens }}{{ produto.imagem }}" style="width: 300px; height: 428px"> -->
+      </div>
+      <div class="col-md-6">
+          <dl>
+              <dt>
+                  Nome
+              </dt>
+              <dd>
+                  {{ veiculo.nome }}
+              </dd>
+              <dt>
+                  Valor
+              </dt>
+              <dd>
+                  {{ veiculo.valor }}
+              </dd>
+              <dt>
+                  Marca
+              </dt>
+              <dd>
+                  {{ veiculo.marca.nome }}
+              </dd>
+              <dt>
+                  Modelo
+              </dt>
+              <dd>
+                  {{ veiculo.modelo.nome }}
+              </dd>
+          </dl>
+
+          <div>
+              <a (click)="excluir()" href="javascript:void(0)" class="btn btn-danger">Excluir</a>&nbsp;
+              <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
+          </div>
+      </div>
+  </div>
+
+</div>

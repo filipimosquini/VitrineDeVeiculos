@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 import { NarikCustomValidatorsModule } from "@narik/custom-validators";
+import { NgxMaskModule } from "ngx-mask";
 
 import { VeiculoAppComponent } from "./veiculo.app.component";
 import { VeiculoRoutingModule } from "./veiculo.route";
@@ -12,9 +13,9 @@ import { VeiculoGuard } from "./services/veiculo.guard";
 import { VeiculoService } from "./services/veiculo.service";
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListarComponent } from './listar/listar.component';
-import { NgxMaskModule } from "ngx-mask";
 import { EditarComponent } from './editar/editar.component';
 import { VeiculoResolve } from "./services/veiculo.resolve";
+import { ExcluirComponent } from './excluir/excluir.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { VeiculoResolve } from "./services/veiculo.resolve";
     CadastroComponent,
     ListarComponent,
     EditarComponent,
+    ExcluirComponent,
   ],
   imports: [
     CommonModule,
