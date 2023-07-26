@@ -11,6 +11,7 @@
     <Folder Include="Bases\Entities\" />
     <Folder Include="Bases\ApplicationServices\" />
     <Folder Include="Bases\Repositories\" />
+    <Folder Include="Veiculos\ApplicationServices\Requests\" />
     <Folder Include="Veiculos\Entities\" />
     <Folder Include="Veiculos\Repositories\" />
   </ItemGroup>

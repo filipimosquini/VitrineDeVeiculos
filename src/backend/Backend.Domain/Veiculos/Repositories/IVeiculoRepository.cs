@@ -6,4 +6,5 @@ namespace Backend.Domain.Veiculos.Repositories;
 public interface IVeiculoRepository : IBaseRepository<Veiculo>
 {
     Task<IList<Veiculo>> Listar();
+    void Remover(Veiculo veiculo);
 }

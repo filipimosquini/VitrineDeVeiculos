@@ -9,4 +9,8 @@ public interface IBaseRepository<TEntity> where TEntity : class
     TEntity Update(TEntity entity);
     void UpdateRange(ICollection<TEntity> entities);
     TEntity Remove(TEntity entity);
+
+    Task<TEntity> AddAsync(TEntity entity);
+    Task AddRangeAsync(ICollection<TEntity> entity);
+    Task<TEntity> FindById(object id);
 }

@@ -31,6 +31,18 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable whe
         return entity;
     }
 
+    public async Task<TEntity> AddAsync(TEntity entity)
+    {
+        if (entity is BaseEntity baseEntity)
+        {
+            baseEntity.IncluidoEm = DateTime.UtcNow;
+            baseEntity.AtualizadoEm = DateTime.UtcNow;
+        }
+
+        await DbSet.AddAsync(entity);
+        return entity;
+    }
+
     public void AddRange(ICollection<TEntity> entities)
     {
         foreach (var baseEntity in entities)
@@ -45,6 +57,19 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable whe
         DbSet.AddRange(entities);
     }
 
+    public async Task AddRangeAsync(ICollection<TEntity> entities)
+    {
+        foreach (var baseEntity in entities)
+        {
+            if (baseEntity is BaseEntity entity)
+            {
+                entity.IncluidoEm = DateTime.UtcNow;
+                entity.AtualizadoEm = DateTime.UtcNow;
+            }
+        }
+
+        await DbSet.AddRangeAsync(entities);
+    }
 
     public TEntity Remove(TEntity entity)
     {
@@ -64,6 +89,11 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable whe
     public TEntity FindById(params object[] ids)
     {
         return DbSet.Find(ids);
+    }
+
+    public async Task<TEntity> FindById(object id)
+    {
+        return await DbSet.FindAsync(id);
     }
 
     public virtual TEntity Update(TEntity entity)

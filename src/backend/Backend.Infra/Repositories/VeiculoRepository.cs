@@ -15,6 +15,11 @@ public class VeiculoRepository : BaseRepository<Veiculo>, IVeiculoRepository
         _context = context;
     }
 
+    public void Remover(Veiculo veiculo)
+    {
+        _context.Veiculos.Remove(veiculo);
+    }
+
     public async Task<IList<Veiculo>> Listar()
         => await _context.Veiculos
             .Include(x => x.Marca)
