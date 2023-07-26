@@ -3,6 +3,7 @@ using Backend.Domain.Bases.ApplicationServices;
 using Backend.Domain.Veiculos.ApplicationServices;
 using Backend.Domain.Veiculos.ApplicationServices.Requests;
 using Backend.Domain.Veiculos.ApplicationServices.Responses;
+using Backend.Domain.Veiculos.Entities;
 using Backend.Domain.Veiculos.Extensions;
 using Backend.Domain.Veiculos.Repositories;
 
@@ -43,6 +44,7 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
         }
 
         veiculo.Nome = request.Nome;
+        veiculo.Valor = request.Valor;
         veiculo.MarcaId = Guid.Parse(request.MarcaId);
         veiculo.ModeloId = Guid.Parse(request.ModeloId);
 
@@ -89,5 +91,12 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
         var modelos = await _modeloRepository.Listar(marcaId);
 
         return modelos.ToResponseList();
+    }
+
+    public async Task<VeiculoResponse> Obter(Guid id)
+    {
+        var veiculo = await _veiculoRepository.Obter(id);
+
+        return veiculo.ToResponse();
     }
 }

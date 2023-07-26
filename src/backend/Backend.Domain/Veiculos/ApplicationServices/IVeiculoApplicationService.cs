@@ -11,4 +11,5 @@ public interface IVeiculoApplicationService
     Task<IEnumerable<VeiculoResponse>> Listar();
     Task<IEnumerable<MarcaResponse>> ListarMarcas();
     Task<IEnumerable<ModeloResponse>> ListarModelos(Guid marcaId);
+    Task<VeiculoResponse> Obter(Guid id);
 }

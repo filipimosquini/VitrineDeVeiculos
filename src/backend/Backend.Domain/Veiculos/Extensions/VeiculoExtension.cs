@@ -45,7 +45,7 @@ public static class VeiculoExtension
     {
         if (veiculos is null)
         {
-            return null;
+            return new List<VeiculoResponse>();
         }
 
         return veiculos.Select(x => x.ToResponse());
@@ -55,7 +55,7 @@ public static class VeiculoExtension
     {
         if (veiculo is null)
         {
-            return null;
+            return new VeiculoResponse();
         }
 
         return new VeiculoResponse

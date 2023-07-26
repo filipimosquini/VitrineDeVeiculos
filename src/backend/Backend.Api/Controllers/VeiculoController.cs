@@ -26,7 +26,7 @@ public class VeiculoController : MainController
     [HttpPost]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] AdicionarVeiculoRequest request)
+    public async Task<IActionResult> Adicionar([FromBody] AdicionarVeiculoRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -45,7 +45,7 @@ public class VeiculoController : MainController
     [HttpPut]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Put([FromBody] EditarVeiculoRequest request)
+    public async Task<IActionResult> Alterar([FromBody] EditarVeiculoRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -64,7 +64,7 @@ public class VeiculoController : MainController
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> Remover(Guid id)
     {
         if (!ModelState.IsValid)
         {
@@ -74,16 +74,24 @@ public class VeiculoController : MainController
         return CustomResponse((CustomValidationResult)await _applicationService.Excluir(id));
     }
 
-    [HttpGet()]
-    [ProducesResponseType(typeof(VeiculoResponse), StatusCodes.Status200OK)]
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<VeiculoResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Listar()
     {
         return CustomResponse(await _applicationService.Listar());
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(VeiculoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Obter(Guid id)
+    {
+        return CustomResponse(await _applicationService.Obter(id));
+    }
+
     [HttpGet("marcas")]
-    [ProducesResponseType(typeof(MarcaResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<MarcaResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ListarMarcas()
     {
@@ -91,7 +99,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("modelos/{marcaId}")]
-    [ProducesResponseType(typeof(ModeloResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<ModeloResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ListarModelos(Guid marcaId)
     {

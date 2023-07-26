@@ -25,4 +25,10 @@ public class VeiculoRepository : BaseRepository<Veiculo>, IVeiculoRepository
             .Include(x => x.Marca)
             .Include(x => x.Modelo)
             .ToListAsync();
+
+    public async Task<Veiculo?> Obter(Guid id)
+        => await _context.Veiculos
+            .Include(x => x.Marca)
+            .Include(x => x.Modelo)
+            .FirstOrDefaultAsync(x => x.Id == id);
 }
