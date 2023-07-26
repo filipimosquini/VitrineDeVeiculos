@@ -11,6 +11,9 @@ public class AdicionarVeiculoRequestValidator : BaseAbstractValidator<AdicionarV
         RuleFor(x => x.Nome)
             .Must(ValidarStringNulaEVazia).WithMessage("O campo Nome é obrigatório");
 
+        RuleFor(x => x.Valor)
+            .GreaterThan(0).WithMessage("O campo Valor deve ser maior que zero");
+
         RuleFor(x => x.MarcaId)
             .Must(ValidarStringNulaEVazia).WithMessage("O campo Marca é obrigatório")
             .Must(ValidarGuid).WithMessage("O campo Marca é inválido");

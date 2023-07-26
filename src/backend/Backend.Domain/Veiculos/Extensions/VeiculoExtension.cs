@@ -16,6 +16,7 @@ public static class VeiculoExtension
         return new Veiculo
         {
             Nome = request.Nome,
+            Valor = request.Valor,
             MarcaId = Guid.Parse(request.MarcaId),
             ModeloId = Guid.Parse(request.ModeloId),
             Imagem = string.Empty,
@@ -33,6 +34,7 @@ public static class VeiculoExtension
         {
             Id = Guid.Parse(request.Id),
             Nome = request.Nome,
+            Valor = request.Valor,
             MarcaId = Guid.Parse(request.MarcaId),
             ModeloId = Guid.Parse(request.ModeloId),
             Imagem = string.Empty
@@ -60,6 +62,7 @@ public static class VeiculoExtension
         {
             Id = veiculo.Id,
             Nome = veiculo.Nome,
+            Valor = veiculo.Valor,
             Imagem = veiculo.Imagem,
             Marca = veiculo.Marca.ToResponse(),
             Modelo = veiculo.Modelo.ToResponse()
