@@ -1,26 +1,26 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBaseComponent } from 'src/app/base/form-base-component';
+import { ToastrService } from 'ngx-toastr';
 
 import { Veiculo } from '../models/veiculo';
-import { VeiculoService } from '../services/veiculo.service';
 import { Marca } from '../models/marca';
 import { Modelo } from '../models/modelo';
-
+import { VeiculoService } from '../services/veiculo.service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
+  selector: 'app-editar',
+  templateUrl: './editar.component.html',
   styleUrls: []
 })
-export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
+export class EditarComponent  extends FormBaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   errors: any[] = [];
-  cadastroForm: FormGroup;
+  edicaoForm: FormGroup;
   veiculo : Veiculo;
   marcas: Marca[];
   modelos: Modelo[];
@@ -28,6 +28,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   constructor(private formBuilder: FormBuilder,
               private service: VeiculoService,
               private router: Router,
+              private route: ActivatedRoute,
               private toastr: ToastrService) {
 
     super();
@@ -37,18 +38,31 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
 
   ngOnInit(): void {
 
-    this.cadastroForm = this.formBuilder.group({
+    this.listarMarcas();
+
+    this.edicaoForm = this.formBuilder.group({
       nome: ['', [Validators.required]],
       valor: ['', [Validators.required]],
       marcaId: ['', [Validators.required]],
       modeloId: ['', [Validators.required]]
     });
 
-    this.listarMarcas();
+    this.veiculo = this.route.snapshot.data['veiculo'];
+
+    this.listarModelos(this.veiculo.marca.id);
+
+    this.edicaoForm.patchValue({
+      id: this.veiculo.id,
+      //imagem: this.veiculo.imagem,
+      nome: this.veiculo.nome,
+      valor: this.veiculo.valor,
+      marcaId: this.veiculo.marca.id,
+      modeloId: this.veiculo.modelo.id,
+    });
   }
 
   ngAfterViewInit(): void {
-    super.configurarValidacaoFormularioBase(this.formInputElements, this.cadastroForm);
+    super.configurarValidacaoFormularioBase(this.formInputElements, this.edicaoForm);
   }
 
   private configurarMensagensDeValidacaoDoFormulario() : void{
@@ -71,14 +85,14 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   }
 
   private validaSeFormularioEstaPreencidoCorretamente() {
-    return this.cadastroForm?.dirty && this.cadastroForm?.valid;
+    return this.edicaoForm?.dirty && this.edicaoForm?.valid;
   }
 
   private processarRequisicaoComSucesso(response: any){
-    this.cadastroForm.reset();
+    this.edicaoForm.reset();
     this.errors = [];
 
-    let toast = this.toastr.success("Veículo cadastrado com sucesso", "Dados cadastrados com sucesso");
+    let toast = this.toastr.success("Veículo alterado com sucesso", "Dados alterados com sucesso");
 
     if(toast){
       toast.onHidden.subscribe(() => {
@@ -116,11 +130,11 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
     });
   }
 
-  cadastrar(){
+  editar(){
     if(this.validaSeFormularioEstaPreencidoCorretamente()){
-      this.veiculo = Object.assign({}, this.veiculo, this.cadastroForm.value);
+      this.veiculo = Object.assign({}, this.veiculo, this.edicaoForm.value);
 
-      this.service.cadastrar(this.veiculo)
+      this.service.editar(this.veiculo)
         .subscribe({
           next: (v) => {
             this.processarRequisicaoComSucesso(v)
@@ -135,3 +149,4 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
     }
   }
 }
+

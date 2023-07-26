@@ -9,6 +9,7 @@ import { VeiculoModule } from './veiculos/veiculo.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -17,11 +18,14 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: true
+    }),
     AppRoutingModule,
     NavegacaoModule,
     VeiculoModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

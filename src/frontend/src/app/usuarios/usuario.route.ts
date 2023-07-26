@@ -5,7 +5,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginComponent } from './login/login.component';
 import { UsuarioGuard } from './services/usuario.guard';
 
-const contaRouterConfig: Routes = [
+const usuarioRouterConfig: Routes = [
     {
         path: '', component: UsuarioAppComponent,
         children: [
@@ -17,7 +17,7 @@ const contaRouterConfig: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(contaRouterConfig)
+        RouterModule.forChild(usuarioRouterConfig)
     ],
     exports: [RouterModule]
 })

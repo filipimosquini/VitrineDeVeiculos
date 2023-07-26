@@ -20,8 +20,8 @@ export class VeiculoGuard {
   }
 
   canActivate() {
-    if(this.localStorageUtils.obterTokenUsuario()){
-      this.router.navigate(['/vitrine']);
+    if(!this.localStorageUtils.obterTokenUsuario()){
+      this.router.navigate(['/usuarios/login']);
     }
 
     return true;

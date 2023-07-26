@@ -12,12 +12,16 @@ import { VeiculoGuard } from "./services/veiculo.guard";
 import { VeiculoService } from "./services/veiculo.service";
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListarComponent } from './listar/listar.component';
+import { NgxMaskModule } from "ngx-mask";
+import { EditarComponent } from './editar/editar.component';
+import { VeiculoResolve } from "./services/veiculo.resolve";
 
 @NgModule({
   declarations: [
     VeiculoAppComponent,
     CadastroComponent,
     ListarComponent,
+    EditarComponent,
   ],
   imports: [
     CommonModule,
@@ -27,18 +31,21 @@ import { ListarComponent } from './listar/listar.component';
     HttpClientModule,
     NarikCustomValidatorsModule,
     VeiculoRoutingModule,
+    NgxMaskModule.forChild(),
   ],
   providers: [
     VeiculoGuard,
-    VeiculoService
+    VeiculoService,
+    VeiculoResolve
   ]
 })
+
 export class VeiculoModule {
   static paraVitrine(){
     return {
       ngModule: VeiculoModule,
       providers: [
-        VeiculoService,
+        VeiculoService
       ]
     }
   }
