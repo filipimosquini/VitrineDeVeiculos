@@ -24,7 +24,7 @@ export class VeiculoService extends BaseService {
 
   listarMarcas() : Observable<Marca[]>{
     return this.http
-      .get(this.urlApi+'veiculos/marcas')
+      .get(this.urlApi+'veiculos/marcas', super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -32,7 +32,7 @@ export class VeiculoService extends BaseService {
 
   listarModelos(marcaId: string) : Observable<Modelo[]>{
     return this.http
-      .get(this.urlApi+'veiculos/modelos/'+marcaId)
+      .get(this.urlApi+'veiculos/modelos/'+marcaId, super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -40,7 +40,7 @@ export class VeiculoService extends BaseService {
 
   obter(id) : Observable<Veiculo>{
     return this.http
-      .get(this.urlApi+'veiculos/'+id)
+      .get(this.urlApi+'veiculos/'+id, super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -48,7 +48,7 @@ export class VeiculoService extends BaseService {
 
   cadastrar(veiculo: Veiculo) : Observable<Veiculo> {
     return this.http
-      .post(this.urlApi+'veiculos', veiculo)
+      .post(this.urlApi+'veiculos', veiculo, super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -56,7 +56,7 @@ export class VeiculoService extends BaseService {
 
   editar(veiculo: Veiculo) : Observable<Veiculo> {
     return this.http
-      .put(this.urlApi+'veiculos', veiculo)
+      .put(this.urlApi+'veiculos', veiculo, super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
@@ -64,7 +64,7 @@ export class VeiculoService extends BaseService {
 
   excluir(veiculo: Veiculo) : Observable<Veiculo> {
     return this.http
-      .delete(this.urlApi+'veiculos/'+veiculo.id, )
+      .delete(this.urlApi+'veiculos/'+veiculo.id, super.ObterAuthHeaderJson())
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))
