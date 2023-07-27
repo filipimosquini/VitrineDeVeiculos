@@ -37,7 +37,7 @@
                   {{ veiculo.nome }}
               </td>
               <td>
-                  {{ veiculo.valor }}
+                  {{ veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}
               </td>
               <td>
                   {{ veiculo.marca.nome }}
