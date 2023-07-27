@@ -65,6 +65,8 @@ app.UseAuthorization();
 
 app.UsingSerilogRequestLogging();
 
+app.UseStaticFiles();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();

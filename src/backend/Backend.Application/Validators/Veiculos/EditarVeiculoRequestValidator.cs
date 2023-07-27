@@ -25,5 +25,8 @@ public class EditarVeiculoRequestValidator : BaseAbstractValidator<EditarVeiculo
         RuleFor(x => x.ModeloId)
             .Must(ValidarStringNulaEVazia).WithMessage("O campo Modelo é obrigatório")
             .Must(ValidarGuid).WithMessage("O campo Modelo é inválido");
+
+        RuleFor(x => x.NomeDaImagem)
+            .Must(ValidarStringNulaEVazia).WithMessage("O campo Nome da imagem é obrigatório");
     }
 }

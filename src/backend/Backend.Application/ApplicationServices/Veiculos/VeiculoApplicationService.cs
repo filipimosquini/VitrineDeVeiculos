@@ -1,9 +1,9 @@
 ﻿using Backend.Application.Configurations.Bases;
 using Backend.Domain.Bases.ApplicationServices;
+using Backend.Domain.Geral;
 using Backend.Domain.Veiculos.ApplicationServices;
 using Backend.Domain.Veiculos.ApplicationServices.Requests;
 using Backend.Domain.Veiculos.ApplicationServices.Responses;
-using Backend.Domain.Veiculos.Entities;
 using Backend.Domain.Veiculos.Extensions;
 using Backend.Domain.Veiculos.Repositories;
 
@@ -14,17 +14,27 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
     private readonly IVeiculoRepository _veiculoRepository;
     private readonly IMarcaRepository _marcaRepository;
     private readonly IModeloRepository _modeloRepository;
+    private readonly IUploadArquivoService _uploadArquivoService;
 
-    public VeiculoApplicationService(IMarcaRepository marcaRepository, IModeloRepository modeloRepository, IVeiculoRepository veiculoRepository)
+    public VeiculoApplicationService(IMarcaRepository marcaRepository, IModeloRepository modeloRepository, IVeiculoRepository veiculoRepository, IUploadArquivoService uploadArquivoService)
     {
         _marcaRepository = marcaRepository;
         _modeloRepository = modeloRepository;
         _veiculoRepository = veiculoRepository;
+        _uploadArquivoService = uploadArquivoService;
     }
 
     public async Task<ICustomValidationResult> Adicionar(AdicionarVeiculoRequest request)
     {
         var veiculo = request.ToEntity();
+
+        var resultado = await _uploadArquivoService.Upload(request.UploadDaImagem, veiculo.Imagem);
+
+        if (!resultado.Valid)
+        {
+            AddErrors(resultado.Erros);
+            return CustomValidationResult;
+        }
 
         await _veiculoRepository.AddAsync(veiculo);
 
@@ -41,6 +51,22 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
         {
             AddError("Veículo não encontrado");
             return CustomValidationResult;
+        }
+
+        if (!string.IsNullOrWhiteSpace(request.UploadDaImagem) && (veiculo.Imagem != request.NomeDaImagem))
+        {
+            var nomeDaImagem = Guid.NewGuid() + "_" + request.NomeDaImagem;
+            var resultado = await _uploadArquivoService.Upload(request.UploadDaImagem, nomeDaImagem);
+
+            if (!resultado.Valid)
+            {
+                AddErrors(resultado.Erros);
+                return CustomValidationResult;
+            }
+
+            await _uploadArquivoService.Delete(veiculo.Imagem);
+
+            veiculo.Imagem = nomeDaImagem;
         }
 
         veiculo.Nome = request.Nome;
@@ -64,6 +90,8 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
             AddError("Veículo não encontrado");
             return CustomValidationResult;
         }
+
+        await _uploadArquivoService.Delete(veiculo.Imagem);
 
         _veiculoRepository.Remover(veiculo);
 
