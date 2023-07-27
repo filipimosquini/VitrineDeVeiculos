@@ -36,7 +36,7 @@ const contaRouterConfig: Routes = [
               canActivate: [VeiculoGuard],
               canDeactivate: [VeiculoGuard],
               resolve: { veiculo: VeiculoResolve },
-              data: [{ claim: [{ nome: 'Veiculo', valor: 'Editar' }, { nome: 'Marca', valor: 'Listar' }, { nome: 'Modelo', valor: 'Listar' }] }],
+              data: [{ claim: [{ nome: 'Veiculo', valor: 'Atualizar' }, { nome: 'Marca', valor: 'Listar' }, { nome: 'Modelo', valor: 'Listar' }] }],
             },
             {
               path: 'excluir/:id',
