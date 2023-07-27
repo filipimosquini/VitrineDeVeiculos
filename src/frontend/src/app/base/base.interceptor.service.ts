@@ -5,12 +5,11 @@ import { Router } from "@angular/router";
 import { Observable, catchError, throwError } from "rxjs";
 
 import { LocalStorageUtils } from "../utils/localstorage";
-import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private toastr: ToastrService) { }
+    constructor(private router: Router) { }
 
     localStorageUtil = new LocalStorageUtils();
 
@@ -25,7 +24,7 @@ export class BaseInterceptor implements HttpInterceptor {
                     this.router.navigate(['/usuarios/login'], { queryParams: { returnUrl: this.router.url }});
                 }
                 if (error.status === 403) {
-                    this.toastr.error("Ocorreu um erro", "Acesso Negado");
+                  this.router.navigate(['/acesso-negado']);
                 }
             }
 

@@ -15,6 +15,7 @@ export class ExcluirComponent implements OnInit {
 
   imagens: string = environment.imagensUrl;
 
+  errors: any[] = [];
   veiculo: Veiculo;
 
   constructor(private service: VeiculoService,
@@ -35,7 +36,8 @@ export class ExcluirComponent implements OnInit {
     }
   }
 
-  private processarRequisicaoComFalha() {
+  private processarRequisicaoComFalha(fail: any) {
+    this.errors = fail?.error?.errors;
     this.toastr.error('Houve um erro no processamento!', 'Erro ao excluir o veículo');
   }
 
@@ -46,7 +48,7 @@ export class ExcluirComponent implements OnInit {
         this.processarRequisicaoComSucesso();
       },
       error: (e) => {
-        this.processarRequisicaoComFalha();
+        this.processarRequisicaoComFalha(e);
       },
       complete: () => {}
     });

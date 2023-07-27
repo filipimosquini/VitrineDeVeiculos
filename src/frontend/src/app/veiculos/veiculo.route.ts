@@ -15,9 +15,29 @@ const contaRouterConfig: Routes = [
         children: [
             { path: '', component: ListarComponent, canActivate: [VeiculoGuard], },
             { path: 'listar', component: ListarComponent, canActivate: [VeiculoGuard], },
-            { path: 'cadastro', component: CadastroComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard] },
-            { path: 'editar/:id', component: EditarComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard], resolve: { veiculo: VeiculoResolve } },
-            { path: 'excluir/:id', component: ExcluirComponent, canActivate: [VeiculoGuard], canDeactivate: [VeiculoGuard], resolve: { veiculo: VeiculoResolve } },
+            {
+              path: 'cadastro',
+              component: CadastroComponent,
+              canActivate: [VeiculoGuard],
+              canDeactivate: [VeiculoGuard],
+              data: [{ claim: [{ nome: 'Veiculo', valor: 'Adicionar' }, { nome: 'Marca', valor: 'Listar' }, { nome: 'Modelo', valor: 'Listar' }] }],
+            },
+            {
+              path: 'editar/:id',
+              component: EditarComponent,
+              canActivate: [VeiculoGuard],
+              canDeactivate: [VeiculoGuard],
+              resolve: { veiculo: VeiculoResolve },
+              data: [{ claim: [{ nome: 'Veiculo', valor: 'Editar' }, { nome: 'Marca', valor: 'Listar' }, { nome: 'Modelo', valor: 'Listar' }] }],
+            },
+            {
+              path: 'excluir/:id',
+              component: ExcluirComponent,
+              canActivate: [VeiculoGuard],
+              canDeactivate: [VeiculoGuard],
+              resolve: { veiculo: VeiculoResolve },
+              data: [{ claim: { nome: 'Veiculo', valor: 'Excluir' } }],
+            },
         ]
     }
 ];

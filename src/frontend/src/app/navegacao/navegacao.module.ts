@@ -6,13 +6,15 @@ import { MenuComponent } from "./menu/menu.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { UsuarioLogadoComponent } from './usuario-logado/usuario-logado.component';
+import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     FooterComponent,
     NotFoundComponent,
-    UsuarioLogadoComponent
+    UsuarioLogadoComponent,
+    AcessoNegadoComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { UsuarioLogadoComponent } from './usuario-logado/usuario-logado.componen
     MenuComponent,
     FooterComponent,
     NotFoundComponent,
-    UsuarioLogadoComponent
+    UsuarioLogadoComponent,
+    AcessoNegadoComponent
   ]
 })
 export class NavegacaoModule { }

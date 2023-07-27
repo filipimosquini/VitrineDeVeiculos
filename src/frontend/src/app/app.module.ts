@@ -11,8 +11,8 @@ import { VeiculoModule } from './veiculos/veiculo.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
-import { BaseGuard } from './base/base.guard';
 import { BaseInterceptor } from './base/base.interceptor.service';
+import { AppGuard } from './app.guard';
 
 export const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true}
@@ -35,7 +35,7 @@ export const httpInterceptorProviders = [
     NavegacaoModule,
     VeiculoModule,
   ],
-  providers: [BaseGuard, httpInterceptorProviders],
+  providers: [AppGuard, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
