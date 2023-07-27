@@ -24,7 +24,7 @@ export class VeiculoGuard extends BaseGuard {
 
   canActivate() {
     if(!this.localStorageUtils.obterTokenUsuario()){
-      this.router.navigate(['/usuarios/login']);
+      this.router.navigate(['/usuarios/login'], { queryParams: { returnUrl: this.router.url }});
     }
 
     return true;

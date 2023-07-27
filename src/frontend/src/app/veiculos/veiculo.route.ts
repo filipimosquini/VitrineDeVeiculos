@@ -13,8 +13,16 @@ const contaRouterConfig: Routes = [
     {
         path: '', component: VeiculoAppComponent,
         children: [
-            { path: '', component: ListarComponent, canActivate: [VeiculoGuard], },
-            { path: 'listar', component: ListarComponent, canActivate: [VeiculoGuard], },
+            {
+              path: '',
+              component: ListarComponent,
+              canActivate: [VeiculoGuard],
+            },
+            {
+              path: 'listar',
+              component: ListarComponent,
+              canActivate: [VeiculoGuard],
+            },
             {
               path: 'cadastro',
               component: CadastroComponent,

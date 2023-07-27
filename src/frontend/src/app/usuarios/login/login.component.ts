@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormBaseComponent } from 'src/app/base/form-base-component';
 import { UsuarioService } from '../services/usuario.service';
@@ -22,12 +22,17 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
   loginForm: FormGroup;
   usuario : Usuario;
 
+  returnUrl: string;
+
   constructor(private formBuilder: FormBuilder,
     private service: UsuarioService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService) {
 
     super();
+
+    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
 
     this.configurarMensagensDeValidacaoDoFormulario();
   }
@@ -69,7 +74,9 @@ export class LoginComponent extends FormBaseComponent implements OnInit, AfterVi
 
     this.service.localStorage.salvarDadosLocaisUsuario(response);
 
-    this.router.navigate(['/vitrine']);
+    this.returnUrl
+    ? this.router.navigate([this.returnUrl])
+    : this.router.navigate(['/vitrine']);
   }
 
   private processarRequisicaoComFalha(fail: any){
