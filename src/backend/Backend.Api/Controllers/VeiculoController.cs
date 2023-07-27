@@ -4,10 +4,12 @@ using Backend.Application.Validators.Veiculos;
 using Backend.Domain.Veiculos.ApplicationServices;
 using Backend.Domain.Veiculos.ApplicationServices.Requests;
 using Backend.Domain.Veiculos.ApplicationServices.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Api.Controllers;
 
+[Authorize]
 [Route("api/veiculos")]
 public class VeiculoController : MainController
 {
@@ -26,6 +28,7 @@ public class VeiculoController : MainController
     [HttpPost]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Adicionar([FromBody] AdicionarVeiculoRequest request)
     {
         if (!ModelState.IsValid)
@@ -45,6 +48,7 @@ public class VeiculoController : MainController
     [HttpPut]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Alterar([FromBody] EditarVeiculoRequest request)
     {
         if (!ModelState.IsValid)
@@ -64,6 +68,7 @@ public class VeiculoController : MainController
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Remover(Guid id)
     {
         if (!ModelState.IsValid)
@@ -74,7 +79,9 @@ public class VeiculoController : MainController
         return CustomResponse((CustomValidationResult)await _applicationService.Excluir(id));
     }
 
+
     [HttpGet]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(IEnumerable<VeiculoResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Listar()
@@ -85,6 +92,7 @@ public class VeiculoController : MainController
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(VeiculoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Obter(Guid id)
     {
         return CustomResponse(await _applicationService.Obter(id));
@@ -93,6 +101,7 @@ public class VeiculoController : MainController
     [HttpGet("marcas")]
     [ProducesResponseType(typeof(IEnumerable<MarcaResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> ListarMarcas()
     {
         return CustomResponse(await _applicationService.ListarMarcas());
@@ -101,6 +110,7 @@ public class VeiculoController : MainController
     [HttpGet("modelos/{marcaId}")]
     [ProducesResponseType(typeof(IEnumerable<ModeloResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> ListarModelos(Guid marcaId)
     {
         return CustomResponse(await _applicationService.ListarModelos(marcaId));
