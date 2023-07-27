@@ -22,6 +22,19 @@ public class AutenticacaoService : IAutenticacaoService
         _identity = identity.Value;
     }
 
+    private List<Claim> ClaimsParaAcessoAoSistema()
+    {
+        return new List<Claim>()
+        {
+            new Claim("Veiculo", "Adicionar"),
+            new Claim("Veiculo", "Atualizar"),
+            new Claim("Veiculo", "Excluir"),
+            new Claim("Veiculo", "Obter"),
+            new Claim("Marca", "Listar"),
+            new Claim("Modelo", "Listar"),
+        };
+    }
+
     protected async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
@@ -31,6 +44,12 @@ public class AutenticacaoService : IAutenticacaoService
         claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
         claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
         claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64));
+
+        foreach (var claim in ClaimsParaAcessoAoSistema())
+        {
+            claims.Add(claim);
+        }
+
         foreach (var userRole in userRoles)
         {
             claims.Add(new Claim("role", userRole));

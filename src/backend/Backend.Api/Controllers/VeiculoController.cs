@@ -1,4 +1,5 @@
-﻿using Backend.Api.Bases;
+﻿using Backend.Api.Annotations;
+using Backend.Api.Bases;
 using Backend.Application.Configurations;
 using Backend.Application.Validators.Veiculos;
 using Backend.Domain.Veiculos.ApplicationServices;
@@ -26,6 +27,7 @@ public class VeiculoController : MainController
     }
 
     [HttpPost]
+    [ClaimsAuthorize("Veiculo", "Adicionar")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -46,6 +48,7 @@ public class VeiculoController : MainController
     }
 
     [HttpPut]
+    [ClaimsAuthorize("Veiculo", "Atualizar")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -66,6 +69,7 @@ public class VeiculoController : MainController
     }
 
     [HttpDelete("{id}")]
+    [ClaimsAuthorize("Veiculo", "Excluir")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -90,6 +94,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("{id}")]
+    [ClaimsAuthorize("Veiculo", "Obter")]
     [ProducesResponseType(typeof(VeiculoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -99,6 +104,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("marcas")]
+    [ClaimsAuthorize("Marca", "Listar")]
     [ProducesResponseType(typeof(IEnumerable<MarcaResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -108,6 +114,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("modelos/{marcaId}")]
+    [ClaimsAuthorize("Modelo", "Listar")]
     [ProducesResponseType(typeof(IEnumerable<ModeloResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
