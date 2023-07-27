@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +11,12 @@ import { VeiculoModule } from './veiculos/veiculo.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
-import { AppGuard } from './app.guard';
+import { BaseGuard } from './base/base.guard';
+import { BaseInterceptor } from './base/base.interceptor.service';
+
+export const httpInterceptorProviders = [
+  {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true}
+];
 
 @NgModule({
   declarations: [
@@ -20,6 +26,7 @@ import { AppGuard } from './app.guard';
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot({
       dropSpecialCharacters: true
@@ -28,7 +35,7 @@ import { AppGuard } from './app.guard';
     NavegacaoModule,
     VeiculoModule,
   ],
-  providers: [AppGuard],
+  providers: [BaseGuard, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
