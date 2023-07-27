@@ -10,6 +10,7 @@ import { VeiculoModule } from './veiculos/veiculo.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
+import { AppGuard } from './app.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { NgxMaskModule } from 'ngx-mask';
     NavegacaoModule,
     VeiculoModule,
   ],
-  providers: [],
+  providers: [AppGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
