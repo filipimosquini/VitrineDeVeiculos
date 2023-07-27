@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { VeiculoService } from '../services/veiculo.service';
 import { Veiculo } from '../models/veiculo';
+import { environment } from 'src/enviroments/enviroment';
 
 @Component({
   selector: 'app-excluir',
@@ -11,6 +12,8 @@ import { Veiculo } from '../models/veiculo';
   styleUrls: []
 })
 export class ExcluirComponent implements OnInit {
+
+  imagens: string = environment.imagensUrl;
 
   veiculo: Veiculo;
 
@@ -24,7 +27,7 @@ export class ExcluirComponent implements OnInit {
   }
 
   private processarRequisicaoComSucesso() {
-    const toast = this.toastr.success('Veíeventoculo excluido com Sucesso!', 'Registro excluído com sucesso');
+    const toast = this.toastr.success('Veículo excluido com Sucesso!', 'Registro excluído com sucesso');
     if (toast) {
       toast.onHidden.subscribe(() => {
         this.router.navigate(['/veiculos/listar']);
@@ -45,7 +48,7 @@ export class ExcluirComponent implements OnInit {
       error: (e) => {
         this.processarRequisicaoComFalha();
       },
-      complete: () => console.info('complete')
+      complete: () => {}
     });
   }
 }

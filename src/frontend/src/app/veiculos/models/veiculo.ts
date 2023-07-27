@@ -7,7 +7,8 @@ export interface Veiculo{
   valor: number;
   marcaId: string;
   modeloId: string;
-  imagem: string;
+  uploadDaImagem: string;
+  nomeDaImagem: string,
 
   marca: Marca;
   modelo: Modelo;

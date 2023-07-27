@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Veiculo } from '../models/veiculo';
 import { VeiculoService } from '../services/veiculo.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/enviroments/enviroment';
 
 @Component({
   selector: 'app-listar',
@@ -9,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: []
 })
 export class ListarComponent implements OnInit {
+
+  imagens: string = environment.imagensUrl;
 
   errors: any[] = [];
   public veiculos: Veiculo[];

@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ToastrService } from 'ngx-toastr';
 import { FormBaseComponent } from 'src/app/base/form-base-component';
+import { Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 
 import { Veiculo } from '../models/veiculo';
 import { VeiculoService } from '../services/veiculo.service';
@@ -13,11 +15,21 @@ import { Modelo } from '../models/modelo';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  canvasRotation = 0;
+  rotation = 0;
+  scale = 1;
+  showCropper = false;
+  containWithinAspectRatio = false;
+  transform: ImageTransform = {};
+  imagemNome: string;
 
   errors: any[] = [];
   cadastroForm: FormGroup;
@@ -41,7 +53,8 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
       nome: ['', [Validators.required]],
       valor: ['', [Validators.required]],
       marcaId: ['', [Validators.required]],
-      modeloId: ['', [Validators.required]]
+      modeloId: ['', [Validators.required]],
+      uploadDaImagem: ['', [Validators.required]],
     });
 
     this.listarMarcas();
@@ -74,7 +87,7 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
     return this.cadastroForm?.dirty && this.cadastroForm?.valid;
   }
 
-  private processarRequisicaoComSucesso(response: any){
+  private processarRequisicaoComSucesso(){
     this.cadastroForm.reset();
     this.errors = [];
 
@@ -119,19 +132,47 @@ export class CadastroComponent extends FormBaseComponent implements OnInit, Afte
   cadastrar(){
     if(this.validaSeFormularioEstaPreencidoCorretamente()){
       this.veiculo = Object.assign({}, this.veiculo, this.cadastroForm.value);
+      this.veiculo.uploadDaImagem = this.croppedImage.split(',')[1];
+      this.veiculo.nomeDaImagem = this.imagemNome;
 
       this.service.cadastrar(this.veiculo)
         .subscribe({
           next: (v) => {
-            this.processarRequisicaoComSucesso(v)
+            this.processarRequisicaoComSucesso()
           },
           error: (e) => {
             this.processarRequisicaoComFalha(e)
           },
-          complete: () => console.info('complete')
+          complete: () => {}
         });
 
       this.atualizarFlagMudancasNaoSalvasParaFalso();
     }
   }
+
+  //#region Imagens
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    this.imagemNome = event.currentTarget.files[0].name;
+  }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+
+  imageLoaded() {
+    this.showCropper = true;
+  }
+
+  cropperReady(sourceImageDimensions: Dimensions) {
+    console.log('Cropper ready', sourceImageDimensions);
+  }
+
+  loadImageFailed() {
+    this.errors.push('O formato do arquivo ' + this.imagemNome + ' não é aceito.');
+  }
+
+  //#endregion
+
 }

@@ -5,7 +5,7 @@
   <hr>
   <div class="row">
       <div class="col-md-10">
-          <form novalidate="novalidate" (ngSubmit)="cadastrar()" [formGroup]="cadastroForm">
+          <form enctype="multipart/form-data" novalidate="novalidate" (ngSubmit)="cadastrar()" [formGroup]="cadastroForm">
 
               <div class="alert alert-danger" *ngIf="errors.length > 0">
                   <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
@@ -55,6 +55,30 @@
                     <span class="text-danger" *ngIf="displayMessage.modeloId">
                       <p [innerHTML]="displayMessage.modeloId"></p>
                     </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Imagem do Veículo</label>
+                <div class="col-md-10">
+                  <div class="custom-file">
+                      <input type="file" accept="image/jpeg,image/png" class="custom-file-input" id="uploadDaImagem" formControlName="uploadDaImagem" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': displayMessage.uploadDaImagem }">
+                      <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
+                      <span *ngIf='imagemNome'><br>{{ imagemNome }}<br></span>
+                      <span class="text-danger" *ngIf="displayMessage.uploadDaImagem">
+                          <p [innerHTML]="displayMessage.uploadDaImagem"></p>
+                      </span>
+                  </div>
+                  <div *ngIf='imagemNome' class="row">
+                      <div class="col col-md-6">
+                          <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                              [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+                              (loadImageFailed)="loadImageFailed()"></image-cropper>
+                      </div>
+                      <div class="col col-md-6">
+                          <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+                      </div>
+                  </div>
                 </div>
               </div>
 

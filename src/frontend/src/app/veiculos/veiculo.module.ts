@@ -16,6 +16,7 @@ import { ListarComponent } from './listar/listar.component';
 import { EditarComponent } from './editar/editar.component';
 import { VeiculoResolve } from "./services/veiculo.resolve";
 import { ExcluirComponent } from './excluir/excluir.component';
+import { ImageCropperModule } from "ngx-image-cropper";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ExcluirComponent } from './excluir/excluir.component';
     NarikCustomValidatorsModule,
     VeiculoRoutingModule,
     NgxMaskModule.forChild(),
+    ImageCropperModule,
   ],
   providers: [
     VeiculoGuard,
