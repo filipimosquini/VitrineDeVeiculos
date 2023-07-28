@@ -104,7 +104,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("marcas")]
-    [ClaimsAuthorize("Marca", "Listar")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(IEnumerable<MarcaResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -114,7 +114,7 @@ public class VeiculoController : MainController
     }
 
     [HttpGet("modelos/{marcaId}")]
-    [ClaimsAuthorize("Modelo", "Listar")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(IEnumerable<ModeloResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]

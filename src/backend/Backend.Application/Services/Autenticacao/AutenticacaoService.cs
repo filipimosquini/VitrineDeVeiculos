@@ -30,8 +30,6 @@ public class AutenticacaoService : IAutenticacaoService
             new Claim("Veiculo", "Atualizar"),
             new Claim("Veiculo", "Excluir"),
             new Claim("Veiculo", "Obter"),
-            new Claim("Marca", "Listar"),
-            new Claim("Modelo", "Listar"),
         };
     }
 
