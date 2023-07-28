@@ -67,4 +67,20 @@ export class ListarComponent implements OnInit{
       complete: () => {}
     });
   }
+
+  limpar(){
+    this.filtro = {
+      nome: '',
+      valorInicio: null,
+      valorFim: null,
+      marcaId: '',
+      modeloId: ''
+    };
+
+    this.modelos = [];
+
+    this.listarMarcas();
+
+    this.filtrar();
+  }
 }
