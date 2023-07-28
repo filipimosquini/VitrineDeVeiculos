@@ -1,97 +1,98 @@
-<div class="container main-container">
+<div class="p5">
+  <div class="container">
+    <div class="box-form">
+      <h1>Edição</h1>
+      <h4>Editar Veículo</h4>
+      <hr class="mt-5 mb-5">
 
-  <h1>Editar Veículo</h1>
+      <form class="form-filtro form-small" enctype="multipart/form-data" novalidate="novalidate" (ngSubmit)="editar()" [formGroup]="edicaoForm">
 
-  <hr>
-  <div class="row">
-      <div class="col-md-10">
-          <form enctype="multipart/form-data" novalidate="novalidate" (ngSubmit)="editar()" [formGroup]="edicaoForm">
+        <div class="alert alert-danger" *ngIf="errors.length > 0">
+          <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+          <ul>
+              <li *ngFor="let error of errors">{{ error }}</li>
+          </ul>
+        </div>
 
-              <div class="alert alert-danger" *ngIf="errors.length > 0">
-                  <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
-                  <ul>
-                      <li *ngFor="let error of errors">{{ error }}</li>
-                  </ul>
+        <div class="form-group">
+          <label class="control-label pl-0">Nome</label>
+          <div class="pl-0">
+            <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
+            <span class="text-danger" *ngIf="displayMessage.nome">
+              <p [innerHTML]="displayMessage.nome"></p>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label pl-0">Valor</label>
+          <div class="pl-0">
+            <input currencyMask class="form-control text-left" id="valor" type="text" placeholder="Valor (requerido)" formControlName="valor" [ngClass]="{'is-invalid': displayMessage.valor }" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" autocomplete="off" />
+            <span class="text-danger" *ngIf="displayMessage.valor">
+              <p [innerHTML]="displayMessage.valor"></p>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label pl-0">Marcas</label>
+          <div class="pl-0">
+            <select class="form-control" id="marcaId" formControlName="marcaId" (change)="listarModelos($event.target.value)" [ngClass]="{ 'is-invalid': displayMessage.marcaId }">
+              <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nome}}</option>
+            </select>
+            <span class="text-danger" *ngIf="displayMessage.marcaId">
+              <p [innerHTML]="displayMessage.marcaId"></p>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label pl-0">Modelos</label>
+          <div class="pl-0">
+            <select class="form-control" id="modeloId" formControlName="modeloId" [ngClass]="{ 'is-invalid': displayMessage.modeloId }">
+              <option *ngFor="let modelo of modelos" [value]="modelo.id">{{modelo.nome}}</option>
+            </select>
+            <span class="text-danger" *ngIf="displayMessage.modeloId">
+              <p [innerHTML]="displayMessage.modeloId"></p>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label pl-0">Imagem do Veículo</label>
+          <div class="pl-0">
+            <div class="custom-file">
+              <input type="file" accept="image/jpeg,image/png" class="custom-file-input" id="uploadDaImagem" formControlName="uploadDaImagem" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': displayMessage.uploadDaImagem }">
+              <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
+              <span *ngIf='imagemNome'><br>{{ imagemNome }}<br></span>
+              <span class="text-danger" *ngIf="displayMessage.uploadDaImagem">
+                  <p [innerHTML]="displayMessage.uploadDaImagem"></p>
+              </span>
+          </div>
+          <div *ngIf='imagemNome' class="row">
+              <div class="col col-md-6">
+                  <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                      [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
+                      (loadImageFailed)="loadImageFailed()"></image-cropper>
               </div>
-
-              <div class="form-group">
-                <label class="col-md-2 control-label">Nome</label>
-                <div class="col-md-10">
-                    <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
-                    <span class="text-danger" *ngIf="displayMessage.nome">
-                      <p [innerHTML]="displayMessage.nome"></p>
-                    </span>
-                </div>
+              <div class="col col-md-6">
+                  <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
               </div>
+          </div>
 
-              <div class="form-group">
-                <label class="col-md-2 control-label">Valor</label>
-                <div class="col-md-10">
-                    <input currencyMask class="form-control" id="valor" type="text" placeholder="Valor (requerido)" formControlName="valor" [ngClass]="{'is-invalid': displayMessage.valor }" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" autocomplete="off" />
-                    <span class="text-danger" *ngIf="displayMessage.valor">
-                      <p [innerHTML]="displayMessage.valor"></p>
-                    </span>
-                </div>
-              </div>
+          <div *ngIf="!imagemNome" class="form-group">
+            <label>Imagem Atual</label><br>
+            <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}">
+          </div>
+          </div>
+        </div>
 
-             <div class="form-group">
-                <label class="col-md-2 control-label">Marcas</label>
-                <div class="col-md-10">
-                    <select class="form-control" id="marcaId" formControlName="marcaId" (change)="listarModelos($event.target.value)" [ngClass]="{ 'is-invalid': displayMessage.marcaId }">
-                      <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nome}}</option>
-                    </select>
-                    <span class="text-danger" *ngIf="displayMessage.marcaId">
-                      <p [innerHTML]="displayMessage.marcaId"></p>
-                    </span>
-                </div>
-              </div>
+        <div class="form-group">
+          <span><button class="btn btn-success" id="editar" [disabled]="!edicaoForm.valid" type="submit">Editar</button></span>
+          <a class="btn btn-light ml-1" href="javascript:window.history.back();">Voltar</a>
+        </div>
 
-			        <div class="form-group">
-                <label class="col-md-2 control-label">Modelos</label>
-                <div class="col-md-10">
-                    <select class="form-control" id="modeloId" formControlName="modeloId" [ngClass]="{ 'is-invalid': displayMessage.modeloId }">
-                      <option *ngFor="let modelo of modelos" [value]="modelo.id">{{modelo.nome}}</option>
-                    </select>
-                    <span class="text-danger" *ngIf="displayMessage.modeloId">
-                      <p [innerHTML]="displayMessage.modeloId"></p>
-                    </span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-md-2 control-label">Imagem do Veículo</label>
-                <div class="col-md-10">
-                  <div class="custom-file">
-                      <input type="file" accept="image/jpeg,image/png" class="custom-file-input" id="uploadDaImagem" formControlName="uploadDaImagem" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': displayMessage.uploadDaImagem }">
-                      <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
-                      <span *ngIf='imagemNome'><br>{{ imagemNome }}<br></span>
-                      <span class="text-danger" *ngIf="displayMessage.uploadDaImagem">
-                          <p [innerHTML]="displayMessage.uploadDaImagem"></p>
-                      </span>
-                  </div>
-                  <div *ngIf='imagemNome' class="row">
-                      <div class="col col-md-6">
-                          <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false" [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
-                              [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"
-                              (loadImageFailed)="loadImageFailed()"></image-cropper>
-                      </div>
-                      <div class="col col-md-6">
-                          <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
-                      </div>
-                  </div>
-
-                  <div *ngIf="!imagemNome" class="form-group">
-                    <label>Imagem Atual</label><br>
-                    <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}" style="width: 70px; height: 100px">
-                </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                    <span><button class="btn btn-success" id="editar" [disabled]="!edicaoForm.valid" type="submit">Editar</button></span>
-                    <a class="btn btn-info ml-1" href="javascript:window.history.back();">Voltar</a>
-              </div>
-          </form>
-      </div>
+      </form>
+    </div>
   </div>
 </div>

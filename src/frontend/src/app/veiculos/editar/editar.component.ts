@@ -14,7 +14,7 @@ import { Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
-  styleUrls: []
+  styleUrls: ['./editar.component.css']
 })
 export class EditarComponent  extends FormBaseComponent implements OnInit, AfterViewInit {
 

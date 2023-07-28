@@ -12,7 +12,7 @@ import { CustomValidators } from '@narik/custom-validators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: []
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 

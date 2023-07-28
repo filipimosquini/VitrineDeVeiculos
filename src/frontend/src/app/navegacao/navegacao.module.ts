@@ -14,7 +14,7 @@ import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
     FooterComponent,
     NotFoundComponent,
     UsuarioLogadoComponent,
-    AcessoNegadoComponent
+    AcessoNegadoComponent,
   ],
   imports: [
     CommonModule,

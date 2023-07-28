@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map } from "rxjs";
 
@@ -6,6 +6,7 @@ import { BaseService } from "src/app/base/base.service";
 import { Veiculo } from "../models/veiculo";
 import { Marca } from "../models/marca";
 import { Modelo } from "../models/modelo";
+import { FiltroVeiculo } from "src/app/vitrine/models/filtroVeiculo";
 
 @Injectable()
 export class VeiculoService extends BaseService {
@@ -17,6 +18,14 @@ export class VeiculoService extends BaseService {
   listar() : Observable<Veiculo[]>{
     return this.http
       .get(this.urlApi+'veiculos')
+      .pipe(
+        map(this.obterDadosDoResponse),
+        catchError(this.tratarErrosDoServidor));
+  }
+
+  listarComFiltros(filtro: FiltroVeiculo) : Observable<Veiculo[]>{
+    return this.http
+      .get(this.urlApi+'veiculos', { params: super.ObterParametrosDeObjeto(filtro) })
       .pipe(
         map(this.obterDadosDoResponse),
         catchError(this.tratarErrosDoServidor))

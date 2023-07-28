@@ -1,53 +1,51 @@
-<div class="container main-container">
-  <h4>Excluir o veículo </h4>
-  <br>
+<div class="p5">
+  <div class="container">
+    <div class="box-form">
+      <h1>Excluir o veículo?</h1>
+      <h2>Você tem certeza disso?</h2>
+      <hr class="mt-5 mb-5">
 
-  <div class="alert alert-danger" *ngIf="errors.length > 0">
-    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
-    <ul>
-        <li *ngFor="let error of errors">{{ error }}</li>
-    </ul>
-    <br>
-  </div>
-  <h5>Você tem certeza disso?</h5>
-
-  <div class="row">
-      <div class="col-md-4">
-          <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}" style="width: 300px; height: 428px">
+      <div class="alert alert-danger" *ngIf="errors.length > 0">
+        <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+        <ul>
+            <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+        <br>
       </div>
-      <div class="col-md-6">
-          <dl>
-              <dt>
-                  Nome
-              </dt>
-              <dd>
-                  {{ veiculo.nome }}
-              </dd>
-              <dt>
-                  Valor
-              </dt>
-              <dd>
-                  {{ veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}
-              </dd>
-              <dt>
-                  Marca
-              </dt>
-              <dd>
-                  {{ veiculo.marca.nome }}
-              </dd>
-              <dt>
-                  Modelo
-              </dt>
-              <dd>
-                  {{ veiculo.modelo.nome }}
-              </dd>
-          </dl>
 
-          <div>
-              <a (click)="excluir()" href="javascript:void(0)" class="btn btn-danger">Excluir</a>&nbsp;
-              <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
-          </div>
+      <div>
+        <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}">
+        <dl>
+          <dt>
+            Nome
+          </dt>
+          <dd>
+            {{ veiculo.nome }}
+          </dd>
+          <dt>
+            Valor
+          </dt>
+          <dd>
+            {{ veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}
+          </dd>
+          <dt>
+            Marca
+          </dt>
+          <dd>
+            {{ veiculo.marca.nome }}
+          </dd>
+          <dt>
+            Modelo
+          </dt>
+          <dd>
+            {{ veiculo.modelo.nome }}
+          </dd>
+        </dl>
+        <div>
+          <a (click)="excluir()" href="javascript:void(0)" class="btn btn-danger">Excluir</a>&nbsp;
+          <a class="btn btn-light" href="javascript:window.history.back();">Voltar</a>
+        </div>
       </div>
+    </div>
   </div>
-
 </div>

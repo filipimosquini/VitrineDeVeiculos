@@ -1,1 +1,61 @@
-<p>listar works!</p>
+<div class="p5">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-3">
+            <div class="form-filtro">
+               <div>
+                  <label class="control-label">Nome</label>
+                  <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome" [(ngModel)]="filtro.nome" />
+               </div>
+
+               <div>
+                  <label class="control-label">Preço mínimo:</label>
+                  <input currencyMask class="form-control text-left" id="valorInicial" type="text" placeholder="Valor inicial" autocomplete="off" [(ngModel)]="filtro.valorInicio" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
+               </div>
+
+               <div>
+                  <label class="control-label">Preço máximo:</label>
+                  <div>
+                     <input currencyMask class="form-control text-left" id="valorFinal" type="text" placeholder="Valor final" autocomplete="off" [(ngModel)]="filtro.valorFim" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
+                  </div>
+               </div>
+
+
+               <div>
+                  <label class="control-label">Marcas</label>
+                  <select class="form-control" id="marcaId" [(ngModel)]="filtro.marcaId" (change)="listarModelos($event.target.value)">
+                     <option selected="selected">Selecione uma opção</option>
+                     <option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nome}}</option>
+                  </select>
+               </div>
+
+               <div>
+                  <label class="control-label">Modelos</label>
+                  <select class="form-control" id="modeloId" [(ngModel)]="filtro.modeloId">
+                     <option selected="selected">Selecione uma opção</option>
+                     <option *ngFor="let modelo of modelos" [value]="modelo.id">{{modelo.nome}}</option>
+                  </select>
+               </div>
+
+               <div>
+                  <span><button class="btn btn-success" id="filtrar" type="buttom" (click)="filtrar()">Filtrar</button></span>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-9">
+            <div class="grid">
+               <div *ngFor="let veiculo of veiculos">
+                  <div class="card">
+                     <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}">
+                     <div class="card-descricao">
+                        <h2 class="h3"><strong>{{veiculo.nome}}</strong></h2>
+                        <h4 class="h3">{{veiculo.marca.nome}} {{veiculo.modelo.nome}}</h4>
+                        <p class="valor-carro m-0">{{veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

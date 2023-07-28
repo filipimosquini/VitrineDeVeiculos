@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+
+@media(max-width: 991px){
+  .form-filtro {
+    margin-bottom: 50px;
+  }
+}
+@media(min-width: 768px){
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(min-width: 1200px){
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

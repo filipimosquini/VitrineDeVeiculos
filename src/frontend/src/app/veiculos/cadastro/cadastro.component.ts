@@ -15,7 +15,7 @@ import { Modelo } from '../models/modelo';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: [],
+  styleUrls: ['./cadastro.component.css'],
 })
 export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 

@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskModule } from 'ngx-mask';
 import { BaseInterceptor } from './base/base.interceptor.service';
 import { AppGuard } from './app.guard';
+import { VitrineModule } from './vitrine/vitrine.module';
 
 export const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true}
@@ -34,6 +35,7 @@ export const httpInterceptorProviders = [
     AppRoutingModule,
     NavegacaoModule,
     VeiculoModule,
+    VitrineModule
   ],
   providers: [AppGuard, httpInterceptorProviders],
   bootstrap: [AppComponent]
