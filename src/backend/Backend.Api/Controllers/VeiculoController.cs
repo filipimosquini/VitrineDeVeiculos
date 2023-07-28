@@ -88,9 +88,9 @@ public class VeiculoController : MainController
     [AllowAnonymous]
     [ProducesResponseType(typeof(IEnumerable<VeiculoResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Listar()
+    public async Task<IActionResult> Listar([FromQuery] FiltrarVeiculoRequest request)
     {
-        return CustomResponse(await _applicationService.Listar());
+        return CustomResponse(await _applicationService.Listar(request));
     }
 
     [HttpGet("{id}")]

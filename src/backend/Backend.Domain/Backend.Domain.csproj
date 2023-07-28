@@ -17,4 +17,8 @@
     <Folder Include="Veiculos\Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Backend.CrossCutting\Backend.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

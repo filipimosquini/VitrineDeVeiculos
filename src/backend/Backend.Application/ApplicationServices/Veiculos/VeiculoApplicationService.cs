@@ -100,9 +100,9 @@ public class VeiculoApplicationService : BaseApplicationService, IVeiculoApplica
         return CustomValidationResult;
     }
 
-    public async Task<IEnumerable<VeiculoResponse>> Listar()
+    public async Task<IEnumerable<VeiculoResponse>> Listar(FiltrarVeiculoRequest request)
     {
-        var veiculos = await _veiculoRepository.Listar();
+        var veiculos = await _veiculoRepository.Listar(request.ToExpression());
 
         return veiculos.ToResponses();
     }

@@ -8,7 +8,7 @@ public interface IVeiculoApplicationService
     Task<ICustomValidationResult> Adicionar(AdicionarVeiculoRequest request);
     Task<ICustomValidationResult> Editar(EditarVeiculoRequest request);
     Task<ICustomValidationResult> Excluir(Guid id);
-    Task<IEnumerable<VeiculoResponse>> Listar();
+    Task<IEnumerable<VeiculoResponse>> Listar(FiltrarVeiculoRequest request);
     Task<IEnumerable<MarcaResponse>> ListarMarcas();
     Task<IEnumerable<ModeloResponse>> ListarModelos(Guid marcaId);
     Task<VeiculoResponse> Obter(Guid id);
