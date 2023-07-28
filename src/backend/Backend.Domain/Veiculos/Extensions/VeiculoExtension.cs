@@ -81,7 +81,7 @@ public static class VeiculoExtension
             queryBase = queryBase.CombinarExpressions(FiltrarPorNomeQuery.Filtrar(request.Nome));
         }
 
-        if (request.ValorInicio > 0 && request.ValorFim < decimal.MaxValue)
+        if (request.ValorInicio > 0 || request.ValorFim < decimal.MaxValue)
         {
             queryBase = queryBase.CombinarExpressions(FiltrarPorValorQuery.Filtrar(request.ValorInicio, request.ValorFim));
         }
