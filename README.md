@@ -12,7 +12,7 @@ Deve-se navegar até este diretório aonde estão listadas as pastas do projeto 
 
 Logo apos serem criados os containers do projeto, deve-se acessar a página http://localhost:4200.
 
-# Execução (Alternativa)
+## Execução (Alternativa)
 
 Caso não for possivel executar o projeto via Docker. recomenda-se usar o Visual Studio 2022 para a execução do backend
 e o Visual Code para a execução do Frontend.
@@ -40,8 +40,11 @@ Após baixar o projeto backend, clicar com o botão direito do mouse no projeto 
 
 1. Linguagem de programação C# (Backend) com webapi na plataforma .NET 7
 2. Angular+ na versão 16 (Frontend)
-3. AspNetIdentity
-4. Banco de dados MySQL
+3. Bootstrap
+4. AspNetIdentity
+5. Entity Framework Core
+6. Banco de dados MySQL
+7. Docker
 
 ## Observações
 
@@ -51,3 +54,16 @@ mesmo um servidor de arquivos local.
 
 * Este projeto usa o AspNetIdentity para gerenciar os usuários mas propositalmente ele foi configurado de forma básica para somente cadastrar o usuário.
 As claims necessárias para uso da API são passadas ao gerar o Token de autenticação.
+
+
+## Melhorias futuras
+
+1. Frontend: 
+
+* Implementação de paginação nas grids da vitrine e do cadastro de veículos
+* Implementação de um spinner para sinalizar que uma requisição está em aandamento.
+* Implementação de tela para manter o cadastro dos usuários
+ 
+2. Backend
+
+* Evolução dos endpoints de usuário para ações como: edição, exclusão, bloqueio e permissionamento.
