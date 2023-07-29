@@ -1,0 +1,13 @@
+.thumb-lista-veiculos {
+  width: 20vw;
+}
+
+.table .thead-dark th {
+  color: #000;
+  background-color: #fdd685;
+  border: none;
+}
+
+thead > tr > td:first-child, tbody > tr > td:first-child {
+  width: 22vw;
+}

@@ -1,59 +1,49 @@
 <div class="container main-container">
+  <div class="row align-items-center">
+    <div class="col">
+      <h1 class="m-0">Lista de Veículos</h1>
+    </div>
+    <div class="col text-right">
+      <a class="btn btn-success" [routerLink]="['/veiculos/cadastro']">Novo Veículo</a>
+    </div>
+  </div>
 
-  <h1>Lista de Veículos</h1>
-  <hr>
+  <hr class="mt-5 mb-5">
 
-  <p>
-      <a class="btn btn-info" [routerLink]="['/veiculos/cadastro']">Novo Veículo</a>
-  </p>
 
   <table class="table table-hover">
-      <thead class="thead-dark">
-          <tr>
-              <th>
-
-              </th>
-              <th>
-                  Nome
-              </th>
-              <th>
-                  Valor
-              </th>
-              <th>
-                  Marca
-              </th>
-              <th>
-                  Modelo
-              </th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let veiculo of veiculos">
-              <td>
-                <img src="{{ imagens }}{{ veiculo.nomeDaImagem }}" style="width: 70px; height: 100px">
-              </td>
-              <td>
-                  {{ veiculo.nome }}
-              </td>
-              <td>
-                  {{ veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}
-              </td>
-              <td>
-                  {{ veiculo.marca.nome }}
-              </td>
-              <td>
-                  {{ veiculo.modelo.nome }}
-              </td>
-              <td class="text-right">
-                  <a class="btn btn-info" [routerLink]="['/veiculos/editar',veiculo.id]">
-                      <span class="fa fa-pencil-alt"></span>
-                  </a>&nbsp;
-                  <a class="btn btn-danger" [routerLink]="['/veiculos/excluir',veiculo.id]">
-                      <span class="fa fa-trash"></span>
-                  </a>
-              </td>
-          </tr>
-      </tbody>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">
+          Foto
+        </th>
+        <th scope="col">
+          Descrição
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let veiculo of veiculos">
+        <td>
+          <img class="thumb-lista-veiculos" src="{{ imagens }}{{ veiculo.nomeDaImagem }}">
+        </td>
+        <td>
+          <p class="m-0"><strong>Nome:</strong> {{ veiculo.nome }}</p>
+          <p class="m-0"><strong>Valor:</strong> {{ veiculo.valor | currency:'BRL':'symbol':'1.2-2' }}</p>
+          <p class="m-0"><strong>Marca:</strong> {{ veiculo.marca.nome }}</p>
+          <p class="m-0"><strong>Modelo:</strong> {{ veiculo.modelo.nome }}</p>
+        </td>
+        <td class="text-right">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-light" id="dropdownAcoes" ngbDropdownToggle>Opções</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownAcoes">
+              <a href="javascript:void(0)" ngbDropdownItem [routerLink]="['/veiculos/editar',veiculo.id]"> Editar </a>
+              <a href="javascript:void(0)" ngbDropdownItem [routerLink]="['/veiculos/excluir',veiculo.id]"> Excluir </a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/enviroment';
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
-  styleUrls: []
+  styleUrls: ['./listar.component.css']
 })
 export class ListarComponent implements OnInit {
 

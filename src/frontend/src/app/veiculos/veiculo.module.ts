@@ -17,6 +17,7 @@ import { VeiculoResolve } from "./services/veiculo.resolve";
 import { ExcluirComponent } from './excluir/excluir.component';
 import { ImageCropperModule } from "ngx-image-cropper";
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     VeiculoRoutingModule,
     NgxMaskModule.forChild(),
     ImageCropperModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    NgbModule
   ],
   providers: [
     VeiculoGuard,
