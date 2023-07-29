@@ -10,7 +10,7 @@ Para executar o projeto é requerido que se tenha o docker instalado na máquina
 
 Deve-se navegar até este diretório aonde estão listadas as pastas do projeto e executar o comando docker-compose up
 
-Logo apos serem criados os containers do projeto, deve-se acessar a página http://localhost:4200.
+Logo apos serem criados os containers do projeto, deve-se acessar a página http://localhost:4300.
 
 ## Execução (Alternativa)
 
