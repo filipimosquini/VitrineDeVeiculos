@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { VeiculoService } from '../services/veiculo.service';
 import { Veiculo } from '../models/veiculo';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/environments/enviroment';
 
 @Component({
   selector: 'app-excluir',

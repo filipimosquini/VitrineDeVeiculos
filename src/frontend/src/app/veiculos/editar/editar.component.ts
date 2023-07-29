@@ -8,7 +8,7 @@ import { Veiculo } from '../models/veiculo';
 import { Marca } from '../models/marca';
 import { Modelo } from '../models/modelo';
 import { VeiculoService } from '../services/veiculo.service';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/environments/enviroment';
 import { Dimensions, ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 
 @Component({

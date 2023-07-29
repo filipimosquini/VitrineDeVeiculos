@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Veiculo } from '../models/veiculo';
 import { VeiculoService } from '../services/veiculo.service';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/environments/enviroment';
 
 @Component({
   selector: 'app-listar',

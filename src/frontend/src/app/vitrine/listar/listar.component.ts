@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Veiculo } from 'src/app/veiculos/models/veiculo';
 import { VeiculoService } from 'src/app/veiculos/services/veiculo.service';
 import { FiltroVeiculo } from '../models/filtroVeiculo';
-import { environment } from 'src/enviroments/enviroment';
+import { environment } from 'src/environments/enviroment';
 import { Marca } from 'src/app/veiculos/models/marca';
 import { Modelo } from 'src/app/veiculos/models/modelo';
 
