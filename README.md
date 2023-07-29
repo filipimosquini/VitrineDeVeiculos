@@ -38,10 +38,10 @@ Após baixar o projeto backend, clicar com o botão direito do mouse no projeto 
 
 ## Frameworks e Ferramentas utilizados
 
-*Linguagem de programação C# (Backend) com webapi na plataforma .NET 7
-*Angular+ na versão 16 (Frontend)
-*AspNetIdentity
-*Banco de dados MySQL
+1. Linguagem de programação C# (Backend) com webapi na plataforma .NET 7
+2. Angular+ na versão 16 (Frontend)
+3. AspNetIdentity
+4. Banco de dados MySQL
 
 ## Observações
 
