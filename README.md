@@ -6,7 +6,7 @@
 
 Para executar o projeto é requerido que se tenha o docker instalado na máquina.
 
-![image](https://github.com/filipimosquini/VitrineDeVeiculos/assets/5280221/cc5b2ef7-7bd9-46a2-8560-a64e946d33ad)
+![image](https://github.com/filipimosquini/VitrineDeVeiculos/assets/5280221/734b66b7-dfb4-4d88-819a-9389a4fa9de3)
 
 Deve-se navegar até este diretório aonde estão listadas as pastas do projeto e executar o comando docker-compose up
 
