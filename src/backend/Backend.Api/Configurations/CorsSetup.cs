@@ -14,8 +14,6 @@ public static class CorsSetup
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
-                    //.WithOrigins()
-                    //.AllowCredentials()
                 }
             );
         });
