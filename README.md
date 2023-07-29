@@ -2,7 +2,7 @@
 
  O projeto simula uma plataforma de listagem de veículos.
 
-## Execução
+## Execução (Recomendada)
 
 Para executar o projeto é requerido que se tenha o docker instalado na máquina.
 
