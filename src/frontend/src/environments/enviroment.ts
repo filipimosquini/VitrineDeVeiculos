@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  urlApi: 'https://localhost:7034/api/',
-  imagensUrl: 'https://localhost:7034/'
+  urlApi: 'http://host.docker.internal:5000/api/',
+  imagensUrl: 'http://host.docker.internal:5000/'
 };
 
 /*
